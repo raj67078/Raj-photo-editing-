@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Raj Photo Edit - 500+ Filters | 1-Click Auto Edit</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-camera-retro"></i>
+                    <span>Raj<span class="highlight">PhotoEdit</span></span>
+                </div>
+                
+                <div class="nav-links">
+                    <a href="#" class="active">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#filters">Filters</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-outline">Login</button>
+                    <button class="btn btn-primary">Sign Up Free</button>
+                </div>
+                
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Photos with <span class="gradient-text">500+ Pro Filters</span></h1>
+                <p>1-Click Auto Edit • 4K Download • Real-time Preview • No AI Required</p>
+                
+                <div class="hero-buttons">
+                    <a href="#editor" class="btn btn-primary btn-large">
+                        <i class="fas fa-magic"></i> Start Editing Free
+                    </a>
+                    <a href="#demo" class="btn btn-outline btn-large">
+                        <i class="fas fa-play"></i> Watch Demo
+                    </a>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Filters</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4K</span>
+                        <span class="stat-label">Download</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1-Click</span>
+                        <span class="stat-label">Auto Edit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Editor Section -->
+    <section id="editor" class="editor-section">
+        <div class="container">
+            <h2 class="section-title">✨ Professional Photo Editor</h2>
+            <p class="section-subtitle">Upload → Select Filter → 1-Click Auto Edit → Download 4K</p>
+            
+            <div class="editor-container">
+                <!-- Left Side: Upload & Preview -->
+                <div class="preview-panel">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Drag & Drop or Click to Upload</h3>
+                            <p>Supports JPG, PNG • Up to 20MB</p>
+                            <input type="file" id="fileInput" accept="image/*" hidden>
+                            <button class="btn btn-primary" id="selectFileBtn">
+                                <i class="fas fa-folder-open"></i> Select Photo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-container" id="previewContainer" style="display: none;">
+                        <div class="preview-header">
+                            <h4>Preview</h4>
+                            <div class="preview-actions">
+                                <button class="btn-icon" id="resetBtn" title="Reset Original">
+                                    <i class="fas fa-undo-alt"></i>
+                                </button>
+                                <button class="btn-icon" id="fullscreenBtn" title="Fullscreen">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="canvas-wrapper">
+                            <canvas id="previewCanvas"></canvas>
+                        </div>
+                        
+                        <div class="download-section">
+                            <div class="resolution-selector">
+                                <label for="resolution">Download Resolution:</label>
+                                <select id="resolution" class="form-select">
+                                    <option value="original">Original Size</option>
+                                    <option value="4k" selected>4K (3840x2160)</option>
+                                    <option value="hd">HD (1920x1080)</option>
+                                </select>
+                            </div>
+                            
+                            <button class="btn btn-success btn-large" id="downloadBtn">
+                                <i class="fas fa-download"></i> Download Photo
+                            </button>
+                        </div>
+                        
+                        <div class="filter-status">
+                            <span id="activeFilterName">No filter applied</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side: Filter Panel -->
+                <div class="filter-panel">
+                    <div class="filter-header">
+                        <h3><i class="fas fa-filter"></i> 500+ Pro Filters</h3>
+                        
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="filterSearch" placeholder="Search filters...">
+                        </div>
+                    </div>
+                    
+                    <div class="category-tabs">
+                        <button class="category-tab active" data-category="all">All</button>
+                        <button class="category-tab" data-category="vivid">Vivid</button>
+                        <button class="category-tab" data-category="portrait">Portrait</button>
+                        <button class="category-tab" data-category="landscape">Landscape</button>
+                        <button class="category-tab" data-category="food">Food</button>
+                        <button class="category-tab" data-category="night">Night</button>
+                        <button class="category-tab" data-category="art">Art</button>
+                        <button class="category-tab" data-category="vintage">Vintage</button>
+                        <button class="category-tab" data-category="bw">B&W</button>
+                    </div>
+                    
+                    <div class="popular-filters">
+                        <span class="badge-popular">🔥 Popular This Week</span>
+                        <div class="popular-grid" id="popularFilters"></div>
+                    </div>
+                    
+                    <div class="filters-grid" id="filtersGrid">
+                        <!-- Filters will be loaded dynamically -->
+                        <div class="loading-filters">
+                            <i class="fas fa-spinner fa-spin"></i> Loading 500+ filters...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Raj Photo Edit?</h2>
+            <p class="section-subtitle">Professional photo editing with 1 click - No AI, Pure Performance</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>1-Click Auto Edit</h3>
+                    <p>Instant filter application with optimized presets</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>500+ Pro Filters</h3>
+                    <p>Vivid, Portrait, Landscape, Food, Night & Vintage</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Real-time Preview</h3>
+                    <p>Instant canvas rendering with zero lag</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>4K Download</h3>
+                    <p>Export in original, 4K or HD resolution</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Smart Search</h3>
+                    <p>Find any filter from 500+ collection instantly</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Manual Adjust</h3>
+                    <p>Fine-tune brightness, contrast & saturation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Categories Showcase -->
+    <section class="categories-showcase">
+        <div class="container">
+            <h2 class="section-title">🎨 Filter Categories</h2>
+            <p class="section-subtitle">500+ professionally crafted filters for every photo type</p>
+            
+            <div class="categories-grid">
+                <div class="category-card" data-cat="vivid">
+                    <i class="fas fa-sun"></i>
+                    <h4>Vivid</h4>
+                    <span>85 filters</span>
+                </div>
+                <div class="category-card" data-cat="portrait">
+                    <i class="fas fa-user"></i>
+                    <h4>Portrait</h4>
+                    <span>72 filters</span>
+                </div>
+                <div class="category-card" data-cat="landscape">
+                    <i class="fas fa-mountain"></i>
+                    <h4>Landscape</h4>
+                    <span>68 filters</span>
+                </div>
+                <div class="category-card" data-cat="food">
+                    <i class="fas fa-utensils"></i>
+                    <h4>Food</h4>
+                    <span>54 filters</span>
+                </div>
+                <div class="category-card" data-cat="night">
+                    <i class="fas fa-moon"></i>
+                    <h4>Night</h4>
+                    <span>48 filters</span>
+                </div>
+                <div class="category-card" data-cat="art">
+                    <i class="fas fa-paint-brush"></i>
+                    <h4>Art</h4>
+                    <span>62 filters</span>
+                </div>
+                <div class="category-card" data-cat="vintage">
+                    <i class="fas fa-clock"></i>
+                    <h4>Vintage</h4>
+                    <span>56 filters</span>
+                </div>
+                <div class="category-card" data-cat="bw">
+                    <i class="fas fa-adjust"></i>
+                    <h4>B&W</h4>
+                    <span>43 filters</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to transform your photos?</h2>
+                <p>Join 25,000+ creators using Raj Photo Edit</p>
+                <button class="btn btn-primary btn-large" onclick="document.getElementById('editor').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-magic"></i> Start Editing Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-camera-retro"></i>
+                        <span>Raj<span class="highlight">PhotoEdit</span></span>
+                    </div>
+                    <p>Professional photo editor with 500+ filters. 1-click edit, 4K download. No AI, pure performance.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="#">Features</a>
+                        <a href="#">Filters</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">API</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Raj Photo Edit. All rights reserved.</p>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="filters.json"></script>
+    <script src="script.js"></script>
+</body>
+</html>
